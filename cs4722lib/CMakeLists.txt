@@ -51,5 +51,3 @@ link_libraries(cs4722 glfw3 opengl32 glu32)
 add_executable(02-many-colors 02-many-colors/main.cpp)
 configure_file(02-many-colors/fragment_shader02.glsl .)
 configure_file(02-many-colors/vertex_shader02.glsl .)
-
-add_executable(ex-2-4 ex-2-4/ex-2-4.cpp)
