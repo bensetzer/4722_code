@@ -1,0 +1,29 @@
+[
+    {
+    "name": "Mingw64",
+    "compilers": {
+      "C": "C:\\mingw64\\bin\\gcc.exe",
+      "CXX": "C:\\mingw64\\bin\\g++.exe"
+        },
+    "preferredGenerator": {
+      "name": "MinGW Makefiles"
+        },
+    "environmentVariables": {
+      "CMT_MINGW_PATH": "C:\\mingw64\\bin"
+    }
+    },
+
+    {
+      "name": "Mingw64_clion",
+      "compilers": {
+        "C": "C:\\Program Files\\JetBrains\\CLion 2022.1.3\\bin\\mingw\\bin\\gcc.exe",
+        "CXX": "C:\\Program Files\\JetBrains\\CLion 2022.1.3\\bin\\mingw\\bin\\g++.exe"
+          },
+      "preferredGenerator": {
+        "name": "MinGW Makefiles"
+          },
+      "environmentVariables": {
+        "CMT_MINGW_PATH": "C:\\Program Files\\JetBrains\\CLion 2023.1.3\\bin\\mingw\\bin"
+      }
+      }
+]

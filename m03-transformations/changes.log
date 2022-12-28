@@ -1,0 +1,11 @@
+
+
+220708-1005
+* Make use of layouts for uniforms and attributes
+* Expand code for buffer allocation and filling, drop use of init_buffer
+* Expand code for window initialization, drop using window
+* Delete 06-buffer-utilities example since we won't be using buffer utilities
+* TODO renumber examples and shaders
+
+
+

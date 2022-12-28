@@ -7,7 +7,7 @@ PROJECT_BRIEF          = "Library for support of CS 4722 at KSU"
 LAYOUT_FILE = DoxygenLayout-cs4722lib.xml
 
 # OUTPUT_DIRECTORY =   doxygen_docs
-OUTPUT_DIRECTORY =  "..\..\..\..\public_html\4722fa22\html\references"
+OUTPUT_DIRECTORY =  "..\..\..\..\public_html\4722sp23\html\references"
 
 INPUT = src/cs4722 src/redbook include/cs4722 include/redbook
 INPUT += documentation
