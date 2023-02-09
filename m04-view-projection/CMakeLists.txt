@@ -4,8 +4,8 @@ project(m03_view_projection)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(C:/cs4722fa22lib/include lib64/include)
-link_directories(C:/cs4722fa22lib lib64)
+include_directories(C:/cs4722sp23lib/include lib64/include)
+link_directories(C:/cs4722sp23lib lib64)
 link_libraries(cs4722  glfw3 opengl32 glu32)
 
 configure_file(fragment_shader.glsl .)

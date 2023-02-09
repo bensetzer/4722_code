@@ -117,7 +117,7 @@ void init(void)
      */
 
     /*
-     * Buffers for vetex attributes are set up similarly to VAOs.
+     * Buffers for vertex attributes are set up similarly to VAOs.
      * We need one buffer for positions.
      */
     const auto number_of_buffers = 1;

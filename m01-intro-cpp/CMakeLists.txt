@@ -3,8 +3,8 @@ project(m01_intro_cpp)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(C:/cs4722sp23lib/include lib64/include)
-link_directories(/cs4722sp23lib lib64)
+include_directories(lib64/include)
+link_directories(lib64)
 link_libraries(cs4722 glfw3 opengl32 glu32)
 
 
