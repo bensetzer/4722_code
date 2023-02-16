@@ -16,6 +16,7 @@
 #include "cs4722/view.h"
 #include "../callbacks.h"
 #include "cs4722/light.h"
+#include "cs4722/utility.h"
 
 static cs4722::view *the_view;
 static GLuint program;

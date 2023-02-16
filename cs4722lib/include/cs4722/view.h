@@ -1,10 +1,14 @@
 #pragma once
 
+
+
+
 #include <GLFW/glfw3.h>
 
 #include "GLM/mat4x4.hpp"
 #include "GLM/ext/matrix_clip_space.hpp"
-#include "utility_glm.h"
+//#include "utility_glm.h"
+#include "utility.h"
 
 namespace cs4722
 {

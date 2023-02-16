@@ -1,7 +1,13 @@
 
+
+#define _USE_MATH_DEFINES // for C++
+#include <cmath>
+
+
 #include "cs4722/shape.h"
 #include "cs4722/utility_glm.h"
 #include "GLM/trigonometric.hpp"
+
 
 using namespace cs4722;
 

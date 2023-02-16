@@ -9,8 +9,8 @@ link_libraries(cs4722  glfw3 opengl32 glu32)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(lib64/include C:/cs4722fa22lib/include)
-link_directories(lib64 C:/cs4722fa22lib)
+include_directories(lib64/include C:/cs4722sp23lib/include)
+link_directories(lib64 C:/cs4722sp23lib)
 
 file(GLOB glsls */*.glsl)
 foreach(shader ${glsls})

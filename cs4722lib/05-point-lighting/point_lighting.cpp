@@ -12,6 +12,10 @@
  *   Changes are needed in the shaders.  See those for comments
  */
 
+//
+//#define _USE_MATH_DEFINES // for C++
+//#include <cmath>
+
 
 #include <GLM/gtc/type_ptr.hpp>
 #include <GLM/gtc/matrix_inverse.hpp>

@@ -1,5 +1,10 @@
 
 
+
+
+#define _USE_MATH_DEFINES // for C++
+#include <cmath>
+
 /*
  * This example is very similar to the previous example, just with colors added.
  * So, the focus of the comments will be on handling and using colors.

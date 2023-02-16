@@ -1,3 +1,9 @@
+
+
+#define _USE_MATH_DEFINES // for C++
+#include <cmath>
+
+
 #include "cs4722/shape.h"
 #include "GLM/glm.hpp"
 #include "cs4722/utility_glm.h"

@@ -214,7 +214,11 @@ GLuint cs4722::init_cube_texture_from_path(const char* base_path, int environmen
     auto elen = strlen(ext);
     const char* fnames[] = {"posx", "negx", "posy", "negy", "posz", "negz"};
     for(int i = 0; i < 6; i++ ) {
-        char posx[blen+elen+6];
+//#ifdef _MSVC_STL_VERSION
+        char *posx = new char[blen+elen+6];
+//#else
+//        char posx[blen+elen+6];
+//#endif
         strcpy(posx, base_path);
         strcpy(posx + blen, "/");
         strcpy(posx+blen+1, fnames[i]);
@@ -223,6 +227,7 @@ GLuint cs4722::init_cube_texture_from_path(const char* base_path, int environmen
         *(posx+blen+6+elen) = '\0';
 //        printf("%s\n", posx);
         plist.push_back(std::string(posx));
+        delete[] posx;
     }
     return cs4722::init_cube_texture_from_file(plist,environment_unit);
 }
