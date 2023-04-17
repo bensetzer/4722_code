@@ -28,13 +28,13 @@ namespace cs4722 {
 
 //		color(const color& c) = default;
 
-//		color mix(double alpha, const color &other) {
-//            color rtval;
-//            rtval.r = (GLubyte)(alpha * r + (1-alpha) * other.r);
-//            rtval.g = (GLubyte)(alpha * g + (1-alpha) * other.g);
-//            rtval.b = (GLubyte)(alpha * b + (1-alpha) * other.b);
-//            return rtval;
-//        }
+		color mix(double alpha, const color &other) {
+            color rtval;
+            rtval.r = (GLubyte)(alpha * r + (1-alpha) * other.r);
+            rtval.g = (GLubyte)(alpha * g + (1-alpha) * other.g);
+            rtval.b = (GLubyte)(alpha * b + (1-alpha) * other.b);
+            return rtval;
+        }
 		
 		color& operator=(const color& x) = default;
 

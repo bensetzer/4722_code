@@ -1,9 +1,4 @@
 
-/*
- * The only change in this example from the previous one is the source of the texture image.
- * The image is fetched from a file rather than generated procedurally.
- * See the 'init_textures' function for details.
- */
 
 
 #include <GLM/vec2.hpp>

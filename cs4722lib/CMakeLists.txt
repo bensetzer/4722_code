@@ -16,9 +16,11 @@ target_sources(cs4722 PUBLIC src/cs4722/block.cpp
 		#        src/cs4722/compile_shaders.cpp
 		src/cs4722/artifact.cpp
 		src/cs4722/artifact_elliptical_orbit.cpp
+		src/cs4722/height_field.cpp
 		src/cs4722/rectangle.cpp
 		src/cs4722/shape.cpp
 		src/cs4722/sphere.cpp
+		src/cs4722/terrain.cpp
 		src/cs4722/texture_utilities.cpp
 		src/cs4722/torus.cpp
 		src/cs4722/transform.cpp
@@ -47,6 +49,9 @@ link_libraries(cs4722 glfw3 opengl32 glu32)
 #configure_file(01-many-points/fragment_shader01.glsl .)
 #configure_file(01-many-points/vertex_shader01.glsl .)
 
+add_executable(01-texture-from-pattern 01-texture-from-pattern/computed-image.cpp)
+configure_file(01-texture-from-pattern/fragment_shader01b.glsl .)
+configure_file(01-texture-from-pattern/vertex_shader01b.glsl .)
 
 add_executable(02-many-colors 02-many-colors/main.cpp)
 configure_file(02-many-colors/fragment_shader02.glsl .)
@@ -55,3 +60,7 @@ configure_file(02-many-colors/vertex_shader02.glsl .)
 add_executable(05-point-lighting 05-point-lighting/point_lighting.cpp)
 configure_file(05-point-lighting/fragment_shader05.glsl .)
 configure_file(05-point-lighting/vertex_shader05.glsl .)
+
+add_executable(07-terrain 07-terrain/main.cpp)
+configure_file(07-terrain/fragment_shader07.glsl .)
+configure_file(07-terrain/vertex_shader07.glsl .)

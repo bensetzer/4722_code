@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(m04_textures)
+project(m05_textures)
 
 
 
@@ -7,8 +7,8 @@ link_libraries(cs4722  glfw3 opengl32 glu32)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(C:/cs4722fa22lib/include lib64/include)
-link_directories(C:/cs4722fa22lib lib64)
+include_directories(C:/cs4722sp23lib/include lib64/include)
+link_directories(C:/cs4722sp23lib lib64)
 
 add_executable(01-texture-from-pattern 01-texture-from-pattern/computed-image.cpp)
 configure_file(01-texture-from-pattern/vertex_shader01.glsl .)

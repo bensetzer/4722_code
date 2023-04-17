@@ -53,12 +53,14 @@ void init()
         Note the different texture units assigned.
      */
     cs4722::init_texture_from_file("../media/tulips-bed-2048x2048.png", 2);
-    cs4722::init_texture_computed(1, 16, cs4722::x11::cyan, cs4722::x11::magenta);
+    cs4722::init_texture_computed2(1, 16, cs4722::x11::cyan, cs4722::x11::magenta);
     // uncomment the following line to smooth out the colors
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
     cs4722::shape* b = new cs4722::sphere(15, 50);
+    b = new cs4722::torus();
+    b = new cs4722::block();
     auto* artf = new cs4722::artifact_rotating();
     artf->the_shape = (b);
     artf->world_transform.translate = (glm::vec3(.5, -.5, 0));

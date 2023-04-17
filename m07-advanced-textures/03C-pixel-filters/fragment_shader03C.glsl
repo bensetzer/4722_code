@@ -40,8 +40,8 @@ void main()
      */
 //    fColor = vec4(base_color.r, 0.0, 0.0, 1.0);
 
-    // yellow filter
-    // fColor = vec4(base_color.r, base_color.g, 0.0, 1.0);
+    // uncomment the following line to see a yellow filter
+//     fColor = vec4(base_color.r, base_color.g, 0.0, 1.0);
 
     /*
      * We can get effects not possible (at least easily) with camera filters.

@@ -7,8 +7,8 @@ link_libraries(cs4722 glfw3 opengl32 glu32)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(c:/cs4722fa22lib/include lib64/include)
-link_directories(c:/cs4722fa22lib lib64)
+include_directories(c:/cs4722sp23lib/include lib64/include)
+link_directories(c:/cs4722sp23lib lib64)
 
 add_executable(01-sky-box 01-sky-box/skybox.cpp)
 configure_file(01-sky-box/vertex_shader01.glsl .)

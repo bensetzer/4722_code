@@ -110,9 +110,17 @@ GLuint cs4722::init_texture_computed(int texture_unit, int texture_size,
     // create data
     for (int r = 0; r < texture_height; r++) {
         for (int c = 0; c < texture_width; c++) {
-            texture_data->push_back(color1.r * r / texture_height + color2.r * c / texture_width);
-            texture_data->push_back(color1.g * r / texture_height + color2.g * c / texture_width);
-            texture_data->push_back(color1.b * r / texture_height + color2.b * c / texture_width);
+//            auto alpha = (double)texture_height / (texture_height + texture_width);
+//            auto alpha = (double)r / (texture_height + texture_width);
+            auto alpha = (double)(r+c)/(texture_width+texture_height-2);
+            auto tmp = color1.mix(alpha, color2);
+//            tmp = color1;
+            texture_data->push_back(tmp.r);
+            texture_data->push_back(tmp.g);
+            texture_data->push_back(tmp.b);
+//            texture_data->push_back(color1.r * r / texture_height + color2.r * c / texture_width);
+//            texture_data->push_back(color1.g * r / texture_height + color2.g * c / texture_width);
+//            texture_data->push_back(color1.b * r / texture_height + color2.b * c / texture_width);
             texture_data->push_back(255);
 //            texture_data->push_back(r * 255 / texture_height);
 //            texture_data->push_back(c * 255 / texture_width);
@@ -153,6 +161,121 @@ GLuint cs4722::init_texture_computed(int texture_unit, int texture_size,
 //    return start_unit + 1;
     return texture;
 }
+
+
+GLuint cs4722::init_texture_computed2(int texture_unit, int texture_size,
+                                     cs4722::color color1, cs4722::color color2) {
+
+
+    auto texture_width = texture_size;
+    auto texture_height = texture_size;
+
+    auto texture_data = new std::vector<GLubyte>();
+    auto midr = (texture_width-1) / 2.0;
+    auto midc = (texture_height - 1) / 2.0;
+    auto denom = midr + midc;
+    // create data
+    for (int r = 0; r < texture_height; r++) {
+        for (int c = 0; c < texture_width; c++) {
+
+            auto alpha = (std::abs(r-midr)+std::abs(c-midc)) / denom;
+            auto tmp = color1.mix(alpha, color2);
+            texture_data->push_back(tmp.r);
+            texture_data->push_back(tmp.g);
+            texture_data->push_back(tmp.b);
+            texture_data->push_back(255);
+        }
+    }
+
+
+    glActiveTexture(GL_TEXTURE0 + texture_unit);
+    GLuint texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    auto number_of_levels = 1;
+    auto internal_format = GL_RGBA8;
+    auto external_format = GL_RGBA;
+
+
+//    glTexStorage2D(GL_TEXTURE_2D, number_of_levels, internal_format, texture_width, texture_height);
+//    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texture_width, texture_height,
+//                        external_format, GL_UNSIGNED_BYTE, texture_data->data());
+    glTexImage2D(GL_TEXTURE_2D, 0, internal_format, texture_width, texture_height, 0, external_format,
+                 GL_UNSIGNED_BYTE, texture_data->data());
+
+//    glBindTextureUnit(texture_unit, texture);
+    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, cs4722::x11::aquamarine.as_float().get());
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    auto mag_filter = GL_NEAREST;
+    // auto mag_filter = GL_LINEAR;
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mag_filter);
+    // auto wrap_type = GL_CLAMP_TO_EDGE;
+    //auto wrap_type = GL_MIRRORED_REPEAT;
+    auto wrap_type = GL_REPEAT;
+    //auto wrap_type = GL_CLAMP_TO_BORDER;
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap_type);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap_type);
+
+//    return start_unit + 1;
+    return texture;
+}
+
+
+
+void cs4722::init_checkerboard_texture(unsigned int texture_unit, unsigned int grid_size,
+                                       unsigned int gray0, unsigned int gray1, unsigned int texture_size) {
+
+    auto texture_width = texture_size;
+    auto texture_height = texture_width;
+    auto size = texture_width / grid_size;
+
+    auto texture_data = new std::vector<GLubyte>();
+    // create data
+    for (int r = 0; r < texture_height; r++) {
+        for (int c = 0; c < texture_width; c++) {
+            auto i = r / size;
+            auto j = c / size;
+            if((i+j) % 2 == 0)
+            {
+                texture_data->push_back(gray0);
+                texture_data->push_back(gray0);
+                texture_data->push_back(gray0);
+            } else
+            {
+                texture_data->push_back(gray1);
+                texture_data->push_back(gray1);
+                texture_data->push_back(gray1);
+
+            }
+            texture_data->push_back(255);
+        }
+    }
+
+
+    // initialize texture and sampler
+
+    glActiveTexture(GL_TEXTURE0 + texture_unit);
+    GLuint texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    auto internal_format = GL_RGBA8;
+    auto external_format = GL_RGBA;
+
+
+    glTexImage2D(GL_TEXTURE_2D, 0, internal_format, texture_width, texture_height, 0, external_format,
+                 GL_UNSIGNED_BYTE, texture_data->data());
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+}
+
+
+
+
+
 
 GLuint cs4722::init_cube_texture_from_file(std::vector<std::string> &paths, int environment_unit)
 {

@@ -9,6 +9,7 @@
 #include "GLM/vec2.hpp"
 #include <vector>
 #include "cs4722/x11.h"
+#include "cs4722/height_field.h"
 
 namespace cs4722 {
 
@@ -586,6 +587,117 @@ The  way the shape classes should be used is as follows:
 		double texture_width_scale;
 		double texture_height_scale;;
 	};
+
+
+/**
+ * \brief Represents a terrain as a shape.
+ *
+ * A terrain, when viewed from above, is a regular matrix of squares.
+ * The terrain is triangulated by dividing each square into two triangles.
+ * A height field is used to determine the height of each vertex in the shape.
+ * The x,z location of vertices is determined so that they are evenly spaced
+ * in the range 0 to 1 in each dimension.
+ *
+ * Algorithms in this shape assume that the height field is normalized from 0 to 1.
+ */
+    class terrain : public cs4722::shape {
+    private:
+
+        /* *
+         * \brief \deprecated max should be 1 and min should be 0.
+         */
+//    double max_height, min_height;
+
+
+    public:
+        /**
+         * \brief The height field is used to generate the y coordinates of the vertices of the triangles
+         * making up the shape.
+         */
+        height_field *heightField;
+
+        /**
+         * \brief  Gradient division points.
+         *
+         * The list must begin with 0 and end with 1.
+         * The number of elements in the list must be equal to or less than the number
+         * of colors in color_set_.
+         *
+         *  This list and color_set_ are initialized in the constructor.
+         */
+        std::vector<double> divisions;
+
+
+        /**
+         * \brief Initialize by providing a height field.
+         *
+         * In this constructor, color_set_ is initialized to a list of five colors and
+         * divisions is initialized to a corresponding list of five division points.
+         *
+         * @param heightField A valid height field of any type.
+         *      Assumed that height values are in the range from 0 to 1.
+         *      It is best if some value is 0 and some value is 1, but that is not a requirement.
+         */
+        terrain(height_field *heightField);
+
+
+        /**
+         * \brief Computes the number of vertices used to describe the terrain.
+         */
+        virtual int get_size() {
+            return (heightField->width-1) * (heightField->depth - 1) * 6;
+        };
+
+        virtual std::vector<glm::vec4>* positions();
+
+
+
+        /**
+         * \brief Returns a list of colors that implement a gradient depending on height.
+         */
+        virtual std::vector<cs4722::color>* colors();
+
+
+        /**
+         * \brief Not implemented
+         */
+        virtual std::vector<glm::vec4>* normals() {
+            return new std::vector<glm::vec4>();
+        }
+
+
+
+        /**
+         * \brief Not implemented
+         */
+        virtual std::vector<glm::vec2>* texture_coordinates() {
+            auto tc = new std::vector<glm::vec2>();
+            for(auto i = 0; i < get_size(); i++ ) {
+                tc->push_back(glm::vec2(0,0));
+            }
+            return tc;
+        }
+
+
+    };
+
+/**
+ * \brief The only difference between this class and terrain is that this class uses alternating color triangles
+ *      as a color scheme.
+ */
+    class terrain_alt_colors : public terrain {
+    public:
+
+        terrain_alt_colors(height_field *heightField) : terrain(heightField) {}
+
+        /**
+         * \brief Returns a list of colors that make alternating color triangles.
+         *
+         */
+        virtual std::vector<cs4722::color>*colors();
+
+    };
+
 
 }
 

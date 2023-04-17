@@ -81,7 +81,7 @@ void init()
     auto file_names = {"posx", "negx", "posy", "negy", "posz", "negz"};
     auto blen = strlen(base_path);
     auto elen = strlen(image_extension);
-    char posx[blen+elen+6];
+    char *posx = new char[blen+elen+6];
 
     // create a texture
     GLuint cube_texture;
@@ -159,7 +159,7 @@ void init()
     // the cube texture is 3D, so there are three coordinates
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
-
+    delete[] posx;
 
 
 

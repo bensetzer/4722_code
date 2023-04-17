@@ -44,6 +44,47 @@ namespace cs4722 {
                                cs4722::color color2 = cs4722::x11::blue);
 
     /**
+     * \brief create a simple gradient texture.
+     *
+     * A simple texture is created as a gradient of two colors.
+     *
+     * @param texture_unit  The texture unit number to use for the texture
+     * @param texture_size  Texture size in pixels, default 16
+     * @param color1  One color to use in the gradient, default yellow
+     * @param color2 Other color to use in the gradient, default blue
+     * @returns   The texture identifier
+     *
+     */
+    GLuint init_texture_computed2(int texture_unit, int texture_size = 16,
+                                 cs4722::color color1 = cs4722::x11::yellow,
+                                 cs4722::color color2 = cs4722::x11::blue);
+
+
+
+    /**
+    * \brief create a checkerboard texture.
+    *
+    * A simple texture is created as a checkerboard pattern of gray.
+    *
+    * @param texture_unit  The texture unit number to use for the texture.
+     *          This parameter is required to be provided since it does not have a default value.
+    * @param grid_size  The number of squares in each direction in the pattern, default is 8.
+    * @param gray0 Specifies the gray level of one set of squares.
+     *      This is an integer value in the range from 0 to 255, inclusive.
+     *      The default value is 0.
+    * @param gray1 Specifies the gray level of one set of squares.
+     *      This is an integer value in the range from 0 to 255, inclusive.
+     *      The default value is 255.
+     * @param texture_size  Specifies the number of pixels in each direction of the created texture.
+     *      The default value is 2048.
+    *
+    */
+    void init_checkerboard_texture(unsigned int texture_unit, unsigned int grid_size = 8,
+                                     unsigned int gray0 = 0, unsigned int gray1 = 255, unsigned int texture_size = 2048);
+
+
+
+    /**
      * \brief Create a cube texture from a list of paths to six image files for the six sides
      * of the cube.
      *
