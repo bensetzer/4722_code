@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(m05_advanced_textures)
+project(m07_advanced_textures)
 
 
 

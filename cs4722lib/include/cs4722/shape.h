@@ -435,16 +435,16 @@ The  way the shape classes should be used is as follows:
 
 		torus_points(float inner_radius, int bands, int sides);
 
-		int get_size();
+		int get_size() override;
 
 		/*
 		Get vertices
 		*/
-		std::vector<glm::vec4>* positions();
+		std::vector<glm::vec4>* positions() override;
 
 
 
-		std::vector<cs4722::color>* colors();
+		std::vector<cs4722::color>* colors() override;
 
 		std::vector<glm::vec4>* normals() override;
 

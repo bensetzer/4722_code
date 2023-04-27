@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "glm/vec3.hpp"
-#include "glm/vec4.hpp"
+#include "GLM/vec3.hpp"
+#include "GLM/vec4.hpp"
 #include <vector>
 
 #include "FastNoiseLite.h"
@@ -81,7 +81,7 @@ public:
     /// Holds a value for an attribute of FastNoiseLight noise, initialized to the default
     int number_of_octaves = 4;
     /// Holds a value for an attribute of FastNoiseLight noise, initialized to the default
-    int gain = .5;
+    double gain = .5;
     /// Holds a value for an attribute of FastNoiseLight noise, initialized to the default
     double  fractal_weighted_strength = 0.0;
     /// Holds a value for an attribute of FastNoiseLight noise, initialized to the default
