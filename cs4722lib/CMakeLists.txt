@@ -6,11 +6,11 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(include)
 
 
-add_library(cs4722 STATIC )
+add_library(cs4722 STATIC)
 
 
 target_sources(cs4722 PUBLIC src/cs4722/block.cpp
-#		src/cs4722/buffer_utilities.cpp
+		src/cs4722/buffer_utilities.cpp
 #		src/cs4722/callbacks.cpp
 		src/cs4722/cylinder.cpp
 		#        src/cs4722/compile_shaders.cpp
@@ -26,7 +26,7 @@ target_sources(cs4722 PUBLIC src/cs4722/block.cpp
 		src/cs4722/transform.cpp
 		src/cs4722/utility_glm.cpp
 		src/cs4722/view.cpp
-#		src/cs4722/window.cpp
+		src/cs4722/window.cpp
 		src/cs4722/x11.cpp )
 
 #target_sources(cs4722 PUBLIC
